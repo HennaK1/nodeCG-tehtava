@@ -10,32 +10,22 @@
         padding: 0;
       }
 
-      body,
-      html {
-        overflow: hidden;
-      }
+      body {
+		display:flex;
+		align-items:center;
+		justify-content:center;
+		}
 
       .container {
         width: 100%;
         height: 100vh;
         /* background: #232323; */
         display: flex;
-        justify-content: start;
-        align-items: end;
-      }
-      .lower-third-animation {
-        animation: lowerThird 1s forwards;
-        animation-delay: 8s;
-      }
-      .box {
-        width: fit-content;
-        height: auto;
-        position: relative;
-        display: flex;
         justify-content: center;
-        flex-direction: column;
-        padding: 30px 40px;
-        background: #232323;
+        align-items: center;
+		background-image: url("circle-scatter-haikei\ \(7\).svg");
+		background-repeat: no-repeat;
+		background-size:cover;
       }
       .title {
         width: 100%;
@@ -44,134 +34,52 @@
         align-items: center;
         height: 50px;
       }
-      .title .block {
-        width: 0%;
-        height: inherit;
-        background: #ffb510;
-        position: absolute;
+	  .title2 {
+		font-size: 22px;
+	  }
 
-        display: flex;
-      }
-      .title-block-animation {
-        animation: mainBlock 2s cubic-bezier(0.74, 0.06, 0.4, 0.92) forwards;
-      }
-      .title h1 {
-        font-family: "Poppins";
-        color: #fff;
-        font-size: 32px;
-        opacity: 0;
-        display: flex;
-        align-items: baseline;
-        position: relative;
-      }
-
-      .title-h1-animation {
+      .title-p-animation {
         -webkit-animation: mainFadeIn 2s forwards;
         -o-animation: mainFadeIn 2s forwards;
-        animation: mainFadeIn 2s forwards;
         animation-delay: 1.6s;
+		margin:0px;
+		white-space:nowrap;
+		overflow:hidden;
+		animation:typing 4s steps(22,end),
+					blink 1s infinite;
       }
 
-      .role {
-        width: 100%;
-        position: relative;
-        display: flex;
-        align-items: center;
-        height: 30px;
-        margin-top: -10px;
-      }
-      .role .block {
-        width: 0%;
-        height: inherit;
-        background: #e91e63;
-        position: absolute;
-        display: flex;
-      }
-      .role-block-animation {
-        animation: secBlock 2s cubic-bezier(0.74, 0.06, 0.4, 0.92) forwards;
-        animation-delay: 2s;
-      }
-      .role p {
-        opacity: 0;
-        font-weight: 400;
-        font-family: "Lato";
-        color: #ffffff;
-        font-size: 12px;
-        text-transform: uppercase;
-        letter-spacing: 5px;
-      }
-      .role-p-animation {
-        animation: secFadeIn 2s forwards;
-        animation-delay: 3.2s;
-      }
+	  .text-typing {
+		padding:20px 30px;
+		background:#f5f5f5;
+		font-size:35px;
+		font-family:monospace;
+		border-radius:50px;
+		}
 
-      @keyframes mainBlock {
-        0% {
-          width: 0%;
-          left: 0;
-        }
-        50% {
-          width: 100%;
-          left: 0;
-        }
-        100% {
-          width: 0;
-          left: 100%;
-        }
-      }
-      @keyframes secBlock {
-        0% {
-          width: 0%;
-          left: 0;
-        }
-        50% {
-          width: 100%;
-          left: 0;
-        }
-        100% {
-          width: 0;
-          left: 100%;
-        }
-      }
-      @keyframes mainFadeIn {
-        0% {
-          opacity: 0;
-        }
-        100% {
-          opacity: 1;
-        }
-      }
-      @keyframes secFadeIn {
-        0% {
-          opacity: 0;
-        }
-        100% {
-          opacity: 0.5;
-        }
-      }
-      @keyframes lowerThird {
-        0% {
-          opacity: 1;
-        }
-        100% {
-          opacity: 0;
-        }
-      }
+@keyframes typing {
+  0% { width:0% }
+  100% { width:100% }
+}
+@keyframes blink {
+  0%,100% {
+    border-right:2px solid transparent;
+  }
+  50% {
+    border-right:2px solid #222;
+  }
+}
 	</style>
 </head>
 <body>
-
-
-	<div class="container" id="lowerThird">
-		<div class="box">
+	<div class="container">
+		<div class="text-typing">
 		  <div class="title">
-			<span class="block title-block-animation" id="blokki"></span>
-			<h1 class="title-h1-animation" id="puhuja">Ulla Sederlöf</h1>
+			<p class="title-p-animation" id="puhuja">Henna Koli</p>
 		  </div>
 
-		  <div class="role">
-			<div class="block role-block-animation" id="tokablokki"></div>
-			<p class="role-p-animation" id="arvonimi">UX Dev designer</p>
+		  <div class="title2">
+			<p class="title-p-animation" id="arvonimi">UX Dev designer</p>
 		  </div>
 		</div>
 	  </div>
@@ -182,11 +90,6 @@
     const puhuja = document.getElementById("puhuja");
 	const titleRep = nodecg.Replicant("titleReplicant");
     const arvonimi = document.getElementById("arvonimi");
-
-	const blokki = document.getElementById("blokki");
-    const tokablokki = document.getElementById("tokablokki");
-
-
 
      speakerRep.on("change", (newValue, oldValue) => {
        console.log(`myRep changed from ${oldValue} to ${newValue}`);
@@ -201,25 +104,14 @@
 	   animations();
      });
 	 function animations() {
-       blokki.classList.remove("title-block-animation");
-       blokki.offsetWidth;
-       blokki.classList.add("title-block-animation");
 
-       puhuja.classList.remove("title-h1-animation");
+       puhuja.classList.remove("title-p-animation ");
        puhuja.offsetWidth;
-       puhuja.classList.add("title-h1-animation");
+       puhuja.classList.add("title-p-animation ");
 
-       tokablokki.classList.remove("role-block-animation");
-       tokablokki.offsetWidth;
-       tokablokki.classList.add("role-block-animation");
-
-       arvonimi.classList.remove("role-p-animation");
+       arvonimi.classList.remove("title-p-animation ");
        arvonimi.offsetWidth;
-       arvonimi.classList.add("role-p-animation");
-
-       // lowerThird.classList.remove("lower-third-animation");
-       // lowerThird.offsetWidth;
-       // lowerThird.classList.add("lower-third-animation");
+       arvonimi.classList.add("title-p-animation ");
      }
 
 
